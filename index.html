@@ -7,16 +7,22 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
    crossorigin=""></script>
-   <script type="text/javascript" src="ottawa.js"></script>
-   <script type="text/javascript" src="lloydminster.js"></script> 
-<!--    <script type="text/javascript" src="canmore.js"></script> 
-   <script type="text/javascript" src="calgary.js"></script>
-   <script type="text/javascript" src="montreal.js"></script> 
-   <script type="text/javascript" src="lawrencetown.js"></script>  
-   <script type="text/javascript" src="bedford.js"></script> 
-   <script type="text/javascript" src="edmonton.js"></script>  -->
+   	<script type="text/javascript" src="ottawa.js"></script>
+	<script type="text/javascript" src="lloydminster.js"></script> 
+    <script type="text/javascript" src="bedford.js"></script>    
+	<script type="text/javascript" src="canmore.js"></script> 
+    <script type="text/javascript" src="calgary.js"></script>
+    <script type="text/javascript" src="montreal.js"></script> 
+    <script type="text/javascript" src="lawrencetown.js"></script>  
+    <script type="text/javascript" src="edmonton.js"></script>
+    <script type="text/javascript" src="antigonish.js"></script>
+    <script type="text/javascript" src="guysborough.js"></script>
 
 </head>
+
+
+
+
 <body>
 <div id="mapid" style="height: 600px; width: 1000px; margin: auto;"></div>
 
@@ -28,7 +34,8 @@
     }
 }
 var i;
-var featureList = [ottawa, lloydminster];
+var featureList = [ottawa, lloydminster, bedford, canmore, calgary, montreal, lawrencetown, edmonton, antigonish, guysborough];
+
 
 
 	var mymap = L.map('mapid').setView([62.085, -95.881], 3.5);
@@ -47,7 +54,6 @@ var featureList = [ottawa, lloydminster];
 	    onEachFeature: onEachFeature
 	}).addTo(mymap);
   }
-	
 
 </script>
 
