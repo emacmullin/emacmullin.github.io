@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+	 <link rel="stylesheet" href="index.css">
 	 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-   crossorigin=""/>
+   		   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+   		    crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-   crossorigin=""></script>
+   			integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   			crossorigin=""></script>
    	<script type="text/javascript" src="ottawa.js"></script>
 	<script type="text/javascript" src="lloydminster.js"></script> 
     <script type="text/javascript" src="bedford.js"></script>    
@@ -17,28 +18,37 @@
     <script type="text/javascript" src="edmonton.js"></script>
     <script type="text/javascript" src="antigonish.js"></script>
     <script type="text/javascript" src="guysborough.js"></script>
-
 </head>
 
 
 
 
 <body>
-<div id="mapid" style="height: 600px; width: 1000px; margin: auto;"></div>
 
+
+<h1> this is the largest title for the page </h1>
+
+<p> this is the paragraph exampling the map and locatons </p>
+
+
+
+mapping stuff -----------------------------------------------------------------------
+<div id="mapid" style="height: 400px; width: 1500px; margin: auto;"></div>
 <script type="text/javascript">
-	function onEachFeature(feature, layer) {
+function onEachFeature(feature, layer) {
     // does this feature have a property named popupContent?
     if (feature.properties && feature.properties.popupContent) {
         layer.bindPopup(feature.properties.popupContent);
     }
 }
+
+
 var i;
 var featureList = [ottawa, lloydminster, bedford, canmore, calgary, montreal, lawrencetown, edmonton, antigonish, guysborough];
 
 
 
-	var mymap = L.map('mapid').setView([62.085, -95.881], 3.5);
+	var mymap = L.map('mapid').setView([54, -93], 4.1);
 	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
 	    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
 	    maxZoom: 18,
@@ -55,7 +65,42 @@ var featureList = [ottawa, lloydminster, bedford, canmore, calgary, montreal, la
 	}).addTo(mymap);
   }
 
+
+
 </script>
+
+end of mapping stuff -------------------------------------------------------
+
+<p>begning of zooom features / button stuff ------------------------------------------</p>
+ 
+
+
+<button type="button" onclick="mymap.flyTo([45.4029444,-73.9556049], 9)"> Location 1: Montreal </button>
+<button type="button" onclick="mymap.flyTo([44.7253,-63.6245], 10)"> Location 2: Bedford </button>
+<button type="button" onclick="mymap.flyTo([53.2488086, -109.9789619], 11)"> Location 3: Lloydminster </button>
+<button type="button" onclick="mymap.flyTo([51.0997168,-115.3838571], 10.5)"> Location 4:Canmore</button>
+<button type="button" onclick="mymap.flyTo([45.3844779, -61.5074846], 12)"> Location 5: Guysborough </button>
+<button type="button" onclick="mymap.flyTo([45.630133, -62.0153733], 11)"> Location 6: Antigonish</button>
+<button type="button" onclick="mymap.flyTo([44.883802, -65.162590], 13)">Location 7: Lawrencetown </button>
+<button type="button" onclick="mymap.flyTo([51.1396304,-114.3157587], 9)">Location 8: Calgary ➔ </button>
+<button type="button" onclick="mymap.flyTo([45.380797, -75.697936], 8.75)">Location 9: Ottawa</button>
+<button type="button" onclick="mymap.flyTo([51.1396304,-114.3157587], 9)">Location 10: Calgary</button>
+<button type="button" onclick="mymap.flyTo([53.611004, -113.626], 9)"> Location 11: Edmonton</button>
+
+<p> 
+	<button id="resetButton" type="button1" onclick="mymap.flyTo([62.085, -95.881], 3.5) "> reset </button>
+</p>
+
+
+
+
+
+
+
+
+
+
+
 
 </body>
 </html>
