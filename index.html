@@ -45,7 +45,7 @@
 <h1> Unsettled: Moving Around Canada </h1>
 
 <p> This map present the sequence of the places I have live in last 8 years. </p>
-<p> Click the locations below and envison the number of kilometres I have put on my car and how quickly I can pack everything into a car ! </p>
+<p> Click the locations below and envison the number of kilometres I have put on my car! </p>
 
 
 
@@ -64,7 +64,7 @@ var featureList = [ottawa, lloydminster, bedford, canmore, calgary, montreal, la
 
 
 
-	var mymap = L.map('mapid').setView([54, -93], 4.1);
+	var mymap = L.map('mapid').setView([51, -92], 4.4);
 	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
 	    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
 	    maxZoom: 18,
@@ -85,7 +85,21 @@ var featureList = [ottawa, lloydminster, bedford, canmore, calgary, montreal, la
 
 
 
+var popup = L.popup()
+    .setLatLng([44.7253,-63.6245])
+    .setContent("The begining (2012)")
+    .addTo(mymap);
+
+var popup = L.popup()
+    .setLatLng([53.611004, -113.626])
+    .setContent("Last Spot (2020)")
+    .addTo(mymap);
+
+
+
+
 </script>
+
 
  
 <p>
@@ -93,10 +107,10 @@ var featureList = [ottawa, lloydminster, bedford, canmore, calgary, montreal, la
 <button type="button" onclick="mymap.flyTo([44.7253,-63.6245], 10)"> Bedford ➔ </button>
 <button type="button" onclick="mymap.flyTo([45.4029444,-73.9556049], 9)"> Montreal ➔ </button>
 <button type="button" onclick="mymap.flyTo([44.7253,-63.6245], 10)"> Bedford ➔ </button>
-<button type="button" onclick="mymap.flyTo([53.2488086, -109.9789619], 11)"> Lloydminster ➔ </button>
+<button type="button" onclick="mymap.flyTo([53.2508086, -109.9789619], 11)"> Lloydminster ➔ </button>
 <button type="button" onclick="mymap.flyTo([51.0997168,-115.3838571], 10.5)"> Canmore ➔ </button>
 <button type="button" onclick="mymap.flyTo([45.3844779, -61.5074846], 12)"> Guysborough ➔ </button>
-<button type="button" onclick="mymap.flyTo([45.630133, -62.0153733], 11)"> Antigonish ➔ </button>
+<button type="button" onclick="mymap.flyTo([45.630133, -62.0153733], 14)"> Antigonish ➔ </button>
 <button type="button" onclick="mymap.flyTo([44.883802, -65.162590], 13)"> Lawrencetown ➔ </button>
 <button type="button" onclick="mymap.flyTo([51.1396304,-114.3157587], 9)"> Calgary ➔ </button>
 <button type="button" onclick="mymap.flyTo([45.380797, -75.697936], 8.75)"> Ottawa ➔ </button>
