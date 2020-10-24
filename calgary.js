@@ -1,9 +1,18 @@
 var calgary = {
-  "type": "GeometryCollection",
-  "geometries": [
-    {
-      "type": "MultiPolygon",
-      "coordinates": [
+  "type":"Feature",
+   "properties":{
+      "popupContent":"#7",
+      "name":"Calgary, AB",
+      "caption":"Was \"Part of the Energy\" in 2017, 2019, 2020",
+      "img":"images/versa.jpg" ,
+      "color":"#e34a33"
+   },
+   "geometry":{
+      "type":"GeometryCollection",
+      "geometries":[
+         {
+            "type":"MultiPolygon",
+            "coordinates":  [
         [
           [
             [
@@ -4551,4 +4560,5 @@ var calgary = {
       ]
     }
   ]
+}
 }

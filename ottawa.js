@@ -1,9 +1,17 @@
 var ottawa = {
-  "type": "GeometryCollection",
-  "geometries": [
-    {
-      "type": "MultiPolygon",
-      "coordinates": [
+   "type":"Feature",
+   "properties":{
+      "name":"Ottawa, ON",
+      "caption":"First \"9-5\" lifestyle, 2017 - 2019",
+      "img":"images/jeep.jpg" ,
+      "color":"#e34a33"
+   },
+   "geometry":{
+      "type":"GeometryCollection",
+      "geometries":[
+         {
+            "type":"MultiPolygon",
+            "coordinates": [
         [
           [
             [
@@ -16015,4 +16023,5 @@ var ottawa = {
       ]
     }
   ]
+}
 }

@@ -1,9 +1,17 @@
 var lloydminster = {
-  "type": "GeometryCollection",
-  "geometries": [
-    {
-      "type": "MultiPolygon",
-      "coordinates": [
+   "type":"Feature",
+   "properties":{
+      "name":"Lloydminster, AB/SK",
+      "caption":"The Border City, 2015",
+      "img":"images/tracker.jpg" ,
+      "color":"#e34a33"
+   },
+   "geometry":{
+      "type":"GeometryCollection",
+      "geometries":[
+         {
+            "type":"MultiPolygon",
+            "coordinates":[
         [
           [
             [
@@ -383,4 +391,5 @@ var lloydminster = {
       ]
     }
   ]
+}
 }

@@ -1,9 +1,17 @@
 var lawrencetown = {
-  "type": "GeometryCollection",
-  "geometries": [
-    {
-      "type": "MultiPolygon",
-      "coordinates": [
+     "type":"Feature",
+   "properties":{
+      "name":"Lawrencetown, NS",
+      "caption":"NOT to be confused with the beachtown, 2016-2017 ",
+      "img":"images/tracker.jpg" ,
+      "color":"#e34a33"
+   },
+   "geometry":{
+      "type":"GeometryCollection",
+      "geometries":[
+         {
+            "type":"MultiPolygon",
+            "coordinates": [
         [
           [
             [
@@ -795,4 +803,5 @@ var lawrencetown = {
       ]
     }
   ]
+}
 }

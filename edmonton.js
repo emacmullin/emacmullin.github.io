@@ -1,6 +1,18 @@
 var edmonton = {
-  "type": "MultiPolygon",
-  "coordinates": [
+ "type":"Feature",
+   "properties":{
+
+      "name":"Edmonton,AB",
+      "caption":"the \"City of Champions\" - Summer 2020",
+      "img":"images/versa.jpg" ,
+      "color":"#e34a33"
+   },
+   "geometry":{
+      "type":"GeometryCollection",
+      "geometries":[
+         {
+            "type":"MultiPolygon",
+            "coordinates": [
     [
       [
         [
@@ -172,8 +184,11 @@ var edmonton = {
         [
           -113.395,
           53.546
+              ]
+          ]
         ]
       ]
-    ]
+    }
   ]
+}
 }

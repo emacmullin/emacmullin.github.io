@@ -1,10 +1,18 @@
-
 var bedford = {
-  "type": "GeometryCollection",
-  "geometries": [
-    {
-      "type": "MultiPolygon",
-      "coordinates": [
+   "type":"Feature",
+   "properties":{
+
+      "name":"Bedford, NS",
+      "caption":"Where the journey began in 2012",
+      // "img":"images/IMG_4525.jpg" ,
+      "color":"#e34a33"
+   },
+   "geometry":{
+      "type":"GeometryCollection",
+      "geometries":[
+         {
+            "type":"MultiPolygon",
+            "coordinates": [
         [
           [
             [
@@ -2480,4 +2488,5 @@ var bedford = {
       ]
     }
   ]
+}
 }

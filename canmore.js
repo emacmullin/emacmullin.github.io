@@ -1,9 +1,17 @@
 var canmore = {
-  "type": "GeometryCollection",
-  "geometries": [
-    {
-      "type": "MultiPolygon",
-      "coordinates": [
+"type":"Feature",
+   "properties":{
+      "name":"Canmore, AB",
+      "caption":"Favorite place to live, 2015-2016",
+      "img":"images/tracker.jpg" ,
+      "color":"#e34a33"
+   },
+   "geometry":{
+      "type":"GeometryCollection",
+      "geometries":[
+         {
+            "type":"MultiPolygon",
+            "coordinates":  [
         [
           [
             [
@@ -1163,4 +1171,5 @@ var canmore = {
       ]
     }
   ]
+}
 }

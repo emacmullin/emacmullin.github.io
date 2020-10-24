@@ -1,9 +1,18 @@
 var guysborough = {
-  "type": "GeometryCollection",
-  "geometries": [
-    {
-      "type": "MultiPolygon",
-      "coordinates": [
+    "type":"Feature",
+   "properties":{
+
+      "name":"Guysborough, NS",
+      "caption":"A breif stay, 2016",
+      "img":"images/tracker.jpg" ,
+      "color":"#e34a33"
+   },
+   "geometry":{
+      "type":"GeometryCollection",
+      "geometries":[
+         {
+            "type":"MultiPolygon",
+            "coordinates": [
         [
           [
             [
@@ -607,4 +616,5 @@ var guysborough = {
       ]
     }
   ]
+}
 }
