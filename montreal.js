@@ -2,8 +2,8 @@ var montreal = {
    "type":"Feature",
    "properties":{
       "name":"Montreal, QC",
-      "caption":"Learning to be the next Alex Colville , 2012-2014",
-      // "img":"images/IMG_4525.jpg" ,
+      "caption":"Learning to be the next Alex Colville , 2012-2014 ",
+      // /"img":"images/IMG_4525.jpg" ,
       "color":"#e34a33"
    },
    "geometry":{
