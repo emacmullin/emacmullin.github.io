@@ -2,7 +2,7 @@ var antigonish = {
    "type":"Feature",
    "properties":{
       "name":"Antigonish, NS",
-      "caption":"Where you're a \"soupie\" or a \"townie\" , 2016",
+      "caption":"The university town, 2016",
       "img":"images/tracker.jpg" ,
       "color":"#e34a33"
    },
