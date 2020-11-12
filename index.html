@@ -82,7 +82,7 @@ locationCollection['features'] = featureList
 
 	var mymap = L.map('mapid').setView([51, -92], 4.4);
 	L.tileLayer(
-'https://api.mapbox.com/styles/v1/macmulline/ck86mp8id0c5h1ilj09b1xp3e/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoibWFjbXVsbGluZSIsImEiOiJjazg1NGlodTAwMHF2M2VtbjlrenJpcXpnIn0.CUg3zp6Gqb5F9kW1TCKe7A',
+'https://api.mapbox.com/styles/v1/macmulline/ckh2hg1if1owm19ods8612vz4/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoibWFjbXVsbGluZSIsImEiOiJjazg1NGlodTAwMHF2M2VtbjlrenJpcXpnIn0.CUg3zp6Gqb5F9kW1TCKe7A',
   
  {
 	    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -109,7 +109,9 @@ var popup = L.popup()
     .addTo(mymap);
 
 
-
+// var wmsLayer = L.tileLayer.wms('https://proxyinternet.nrcan.gc.ca/arcgis/services/CLSS-SATC/CLSS_Administrative_Boundaries/MapServer/WMSServer?', {
+//     layers: '0,1'
+// }).addTo(mymap);
 
 </script>
 
