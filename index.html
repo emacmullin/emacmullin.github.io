@@ -53,6 +53,19 @@
 
 
 <div id="mapid" style="height: 400px; margin: auto;"></div>
+
+<div id="ab" style="height: 400px; margin: auto;"></div>
+
+
+// <p>Click the button to get your coordinates.</p>
+
+// <button onclick="getLocation()">Try It</button>
+
+// <p id="demo"></p>
+
+
+
+
 <script type="text/javascript">
 
 function onEachFeature(feature, layer) {
@@ -80,7 +93,62 @@ locationCollection['features'] = featureList
 
 
 
-	var mymap = L.map('mapid').setView([51, -92], 4.4);
+
+
+// // Making a XMLHttpRequest
+// function loadAPI() {
+//   var xhttp = new XMLHttpRequest();
+//   xhttp.open("GET", "API URL with Token Here", false);
+//   xhttp.addEventListener("load", loadData);
+//   xhttp.send();
+// }
+
+
+
+
+
+function reqListener () {
+  //console.log(this.responseText);
+  var div = document.createElement("div");
+  div.innerHTML = APIresponse;
+  document.getElementById("ab").appendChild(div);
+}
+
+function loadAPI() {
+var xhr= new XMLHttpRequest();
+xhr.open("GET", "https://raw.githubusercontent.com/emacmullin/emacmullin.github.io/master/GC-NP/CLAB_AB_2020-08-31.geojson", fasle);
+xhr.addEventListener("load", loadData);
+xhr.send();
+}
+
+
+// Displaying the data
+function loadData() {
+  document.getElementById('api').innerText = this.responseText;
+}
+
+// var APIresponse = xhr.responseText;
+
+// function myFunction() {
+
+
+
+
+// 
+// // }
+
+ 
+
+
+
+
+
+
+
+
+
+
+  var mymap = L.map('mapid').setView([51, -92], 4.4);
 	L.tileLayer(
 'https://api.mapbox.com/styles/v1/macmulline/ckh2hg1if1owm19ods8612vz4/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoibWFjbXVsbGluZSIsImEiOiJjazg1NGlodTAwMHF2M2VtbjlrenJpcXpnIn0.CUg3zp6Gqb5F9kW1TCKe7A',
   
@@ -103,15 +171,47 @@ locationCollection['features'] = featureList
 //     .setContent("The beginning (2012)")
 //     .addTo(mymap);
 
-var popup = L.popup()
-    .setLatLng([53.611004, -113.626])
-    .setContent("Present (2020)")
-    .addTo(mymap);
+// var popup = L.popup()
+//     .setLatLng([53.611004, -113.626])
+//     .setContent("Present (2020)")
+//     .addTo(mymap);
 
 
 // var wmsLayer = L.tileLayer.wms('https://proxyinternet.nrcan.gc.ca/arcgis/services/CLSS-SATC/CLSS_Administrative_Boundaries/MapServer/WMSServer?', {
 //     layers: '0,1'
 // }).addTo(mymap);
+
+
+
+
+
+
+
+
+
+var x = document.getElementById("demo");
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else { 
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showPosition(position) { 
+  x.innerHTML = "Latitude: " + position.coords.latitude + 
+  "<br>Longitude: " + position.coords.longitude;
+}
+
+
+
+
+// var popup = L.popup()
+//     .setLatLng([44.7253,-63.6245])
+//     .setContent("The beginning (2012)")
+//     .addTo(mymap);
+
 
 </script>
 
@@ -131,6 +231,11 @@ var popup = L.popup()
 <button type="button" onclick="mymap.flyTo([45.380797, -75.697936], 8.75)"> Ottawa ➔ </button>
 <button type="button" onclick="mymap.flyTo([51.1396304,-114.3157587], 9)"> Calgary ➔ </button>
 <button type="button" onclick="mymap.flyTo([53.611004, -113.626], 9)"> Edmonton </button>
+
+
+<!-- 
+<button onclick="myFunction()">Try it</button>
+ -->
 
 <p> 
 	<button id="resetButton" type="button1" onclick="mymap.flyTo([51, -92], 4.45) "> RESET </button>
