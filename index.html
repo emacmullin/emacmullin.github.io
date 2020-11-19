@@ -1,246 +1,134 @@
 <!DOCTYPE html>
 <html>
-<head>
-	 
-	 <link rel="stylesheet" href="index.css">
-	 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-   		   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-   		    crossorigin=""/>
-   	 <link href='https://fonts.googleapis.com/css?family=Roboto Condensed' rel='stylesheet'>
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-   			integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-   			crossorigin=""></script>
-   	<script type="text/javascript" src="ottawa.js"></script>
-	<script type="text/javascript" src="lloydminster.js"></script> 
-    <script type="text/javascript" src="bedford.js"></script>    
-	<script type="text/javascript" src="canmore.js"></script> 
-    <script type="text/javascript" src="calgary.js"></script>
-    <script type="text/javascript" src="montreal.js"></script> 
-    <script type="text/javascript" src="lawrencetown.js"></script>  
-    <script type="text/javascript" src="edmonton.js"></script>
-    <script type="text/javascript" src="antigonish.js"></script>
-    <script type="text/javascript" src="guysborough.js"></script>
-<script src='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js'></script>
-<link href='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.css' rel='stylesheet' />
-<style>
+   <head>
+      <link rel="stylesheet" href="index.css">
+      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+         integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+         crossorigin=""/>
+      <link href='https://fonts.googleapis.com/css?family=Roboto Condensed' rel='stylesheet'>
+      <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+         crossorigin=""></script>
+      <script src='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js'></script>
+      <link href='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.css' rel='stylesheet' />
+      <style>
+      <style>
+         body {
+         font-family: 'Roboto Condensed';font-size: 22px;
+         }
+         body {text-align: center;}
+         h1 {text-align: center;}
+         p {text-align: center;}
+         h1 {text-align: center;}
+         #popup {color:red; font-size: 12px; font-family:verdana}
 
-	<style>
-		body {
-    	font-family: 'Roboto Condensed';font-size: 22px;
-}
-
-		body {text-align: center;}
-		h1 {text-align: center;}
-		p {text-align: center;}
-	
-
-
-	</style>
-
-</head>
+      </style>
+   </head>
+   
 
 
 
 
-<body>
-
-
-<h1> Unsettled: Moving Around Canada </h1>
-
-<p> This map presents the sequence of the places I have live in last 8 years. </p>
-<p> Click the locations below and envison the number of kilometres! </p>
-
-
-
-<div id="mapid" style="height: 400px; margin: auto;"></div>
-
-<div id="ab" style="height: 400px; margin: auto;"></div>
-
-
-// <p>Click the button to get your coordinates.</p>
-
-// <button onclick="getLocation()">Try It</button>
-
-// <p id="demo"></p>
-
-
-
-
-<script type="text/javascript">
-
-function onEachFeature(feature, layer) {
-      image = feature.properties.img ? "<img src="+feature.properties.img + " width=\"200\" height=\"150\">" : "";
-
-        layer.bindPopup("<h1>"+feature.properties.name+"</h1><p>"+feature.properties.caption+"</p>" + image);
-                // layer.bindPopup("<h1>"+feature.properties.name+"</h1><p>"+feature.properties.caption+"</p><img src="+feature.properties.img + " width=\"200\" height=\"150\">");
-        layer.setStyle({fillColor: feature.properties.color, color:feature.properties.color});
-
-}
-
-function style(feature) {
-    return {
-        fillColor: getColor(feature.properties.color),
-
-    };
-}
-
-
-
-var featureList = [ antigonish, bedford, calgary, canmore, guysborough, ottawa, montreal, lloydminster, lawrencetown, edmonton ]
-var locationCollection = {};
-locationCollection['type'] = 'FeatureCollection'
-locationCollection['features'] = featureList
-
-
-
-
-
-// // Making a XMLHttpRequest
-// function loadAPI() {
-//   var xhttp = new XMLHttpRequest();
-//   xhttp.open("GET", "API URL with Token Here", false);
-//   xhttp.addEventListener("load", loadData);
-//   xhttp.send();
-// }
-
-
-
-
-
-function reqListener () {
-  //console.log(this.responseText);
-  var div = document.createElement("div");
-  div.innerHTML = APIresponse;
-  document.getElementById("ab").appendChild(div);
-}
-
-function loadAPI() {
-var xhr= new XMLHttpRequest();
-xhr.open("GET", "https://raw.githubusercontent.com/emacmullin/emacmullin.github.io/master/GC-NP/CLAB_AB_2020-08-31.geojson", fasle);
-xhr.addEventListener("load", loadData);
-xhr.send();
-}
-
-
-// Displaying the data
-function loadData() {
-  document.getElementById('api').innerText = this.responseText;
-}
-
-// var APIresponse = xhr.responseText;
-
-// function myFunction() {
-
-
-
-
-// 
-// // }
-
- 
-
-
-
-
-
-
-
-
-
-
-  var mymap = L.map('mapid').setView([51, -92], 4.4);
-	L.tileLayer(
-'https://api.mapbox.com/styles/v1/macmulline/ckh2hg1if1owm19ods8612vz4/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoibWFjbXVsbGluZSIsImEiOiJjazg1NGlodTAwMHF2M2VtbjlrenJpcXpnIn0.CUg3zp6Gqb5F9kW1TCKe7A',
+   <body>
+      <h1> Unsettled: Moving Around Canada </h1>
+      <p> This map presents the sequence of the places I have live in last 8 years. </p>
+      <p> Click the locations below and envison the number of kilometres! </p>
+      <div id="mapid" style="height: 400px; margin: auto;"></div>
   
- {
-	    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-	    maxZoom: 18,
-	    id: 'mapbox/streets-v11',
-	    tileSize: 512,
-	    zoomOffset: -1,
-	    accessToken: 'pk.eyJ1IjoibWFjbXVsbGluZSIsImEiOiJjazg1NGlodTAwMHF2M2VtbjlrenJpcXpnIn0.CUg3zp6Gqb5F9kW1TCKe7A'
-	}).addTo(mymap);
 
-	
-  L.geoJson(locationCollection, {onEachFeature: onEachFeature}).addTo(mymap); //}, {style:style}
-
-
-
-// var popup = L.popup()
-//     .setLatLng([44.7253,-63.6245])
-//     .setContent("The beginning (2012)")
-//     .addTo(mymap);
-
-// var popup = L.popup()
-//     .setLatLng([53.611004, -113.626])
-//     .setContent("Present (2020)")
-//     .addTo(mymap);
-
-
-// var wmsLayer = L.tileLayer.wms('https://proxyinternet.nrcan.gc.ca/arcgis/services/CLSS-SATC/CLSS_Administrative_Boundaries/MapServer/WMSServer?', {
-//     layers: '0,1'
-// }).addTo(mymap);
-
-
-
-
-
-
-
-
-
-var x = document.getElementById("demo");
-
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-  } else { 
-    x.innerHTML = "Geolocation is not supported by this browser.";
-  }
-}
-
-function showPosition(position) { 
-  x.innerHTML = "Latitude: " + position.coords.latitude + 
-  "<br>Longitude: " + position.coords.longitude;
-}
+  <!--     <p>Click the button to get your coordinates.</p>
+      // <button onclick="getLocation()">Try It</button>
+      // 
+      <p id="demo"></p> -->
+      
+<!-- ------------------------------------------------------------------------------------------------------ -->
+ <!-- top of doing things 
+<! ------------------------------------------------------------------------------------------------------ -->
+      <script type="text/javascript">
+         function onEachFeature(feature, layer) {
+               // image = feature.properties.img ? "<img src="+feature.properties.img + " width=\"200\" height=\"150\">" : "";
+         
+                 layer.bindPopup("<p id='popup'>"+feature.properties.NAME_E+"</p>");
+                         // layer.bindPopup("<h1>"+feature.properties.name+"</h1><p>"+feature.properties.caption+"</p><img src="+feature.properties.img + " width=\"200\" height=\"150\">");
+                 // layer.setStyle({fillColor: feature.properties.color, color:feature.properties.color});
+         
+         }
+         
+         function style(feature) {
+             return {
+                 fillColor: getColor(feature.properties.color),
+         
+             };
+         }
+         
+         
+           var mymap = L.map('mapid').setView([51, -92], 4.4);
+          L.tileLayer(
+         'https://api.mapbox.com/styles/v1/macmulline/ckh2hg1if1owm19ods8612vz4/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoibWFjbXVsbGluZSIsImEiOiJjazg1NGlodTAwMHF2M2VtbjlrenJpcXpnIn0.CUg3zp6Gqb5F9kW1TCKe7A',
+           
+          {
+              attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+              maxZoom: 18,
+              id: 'mapbox/streets-v11',
+              tileSize: 512,
+              zoomOffset: -1,
+              accessToken: 'pk.eyJ1IjoibWFjbXVsbGluZSIsImEiOiJjazg1NGlodTAwMHF2M2VtbjlrenJpcXpnIn0.CUg3zp6Gqb5F9kW1TCKe7A'
+          }).addTo(mymap);
+         
+  
 
 
 
+           function reqListener () {
+                     var apiResponseAB = JSON.parse(this.responseText);
+                     var apiResponseABtxt = 
+                     L.geoJSON(apiResponseAB,  {onEachFeature: onEachFeature}).addTo(mymap);
+                 }
+   
+           var oReq = new XMLHttpRequest();
+           oReq.addEventListener("load", reqListener);
+           oReq.open("GET", "https://raw.githubusercontent.com/emacmullin/emacmullin.github.io/master/GC-NP/CLAB_AB_2020-08-31.geojson");
+           oReq.send();
+                            
+    
+         
+         
+         
+         
+         
+         
+         
+// <!-- ------------------------------------------------------------------------------------------------------ -->
+// <!-- tthe cool thing 
+// <! ------------------------------------------------------------------------------------------------------ -->
+         
+         // var x = document.getElementById("demo");
+         
+         // function getLocation() {
+         //   if (navigator.geolocation) {
+         //     navigator.geolocation.getCurrentPosition(showPosition);
+         //   } else { 
+         //     x.innerHTML = "Geolocation is not supported by this browser.";
+         //   }
+         // }
+         
+         // // function showPosition(position) { 
+         // //   x.innerHTML = "Latitude: " + position.coords.latitude + 
+         // //   "<br>Longitude: " + position.coords.longitude;
+         // }
+         
+         
+         
+         
+         
+      </script>
+     
+<!--    
 
-// var popup = L.popup()
-//     .setLatLng([44.7253,-63.6245])
-//     .setContent("The beginning (2012)")
-//     .addTo(mymap);
-
-
-</script>
-
-
- 
-<p>
-
-<button type="button" onclick="mymap.flyTo([44.7253,-63.6245], 10)"> Bedford ➔ </button>
-<button type="button" onclick="mymap.flyTo([45.4029444,-73.1056049], 9)"> Montreal ➔ </button>
-<button type="button" onclick="mymap.flyTo([44.7253,-63.6245], 10)"> Bedford ➔ </button>
-<button type="button" onclick="mymap.flyTo([53.2508086, -109.9789619], 11)"> Lloydminster ➔ </button>
-<button type="button" onclick="mymap.flyTo([51.0997168,-115.3838571], 10.5)"> Canmore ➔ </button>
-<button type="button" onclick="mymap.flyTo([45.3844779, -61.5074846], 12)"> Guysborough ➔ </button>
-<button type="button" onclick="mymap.flyTo([45.630133, -62.0153733], 13)"> Antigonish ➔ </button>
-<button type="button" onclick="mymap.flyTo([44.883802, -65.162590], 13)"> Lawrencetown ➔ </button>
-<button type="button" onclick="mymap.flyTo([51.1396304,-114.3157587], 9)"> Calgary ➔ </button>
-<button type="button" onclick="mymap.flyTo([45.380797, -75.697936], 8.75)"> Ottawa ➔ </button>
-<button type="button" onclick="mymap.flyTo([51.1396304,-114.3157587], 9)"> Calgary ➔ </button>
-<button type="button" onclick="mymap.flyTo([53.611004, -113.626], 9)"> Edmonton </button>
-
-
-<!-- 
-<button onclick="myFunction()">Try it</button>
- -->
-
-<p> 
-	<button id="resetButton" type="button1" onclick="mymap.flyTo([51, -92], 4.45) "> RESET </button>
-</p>
-
-
-</body>
+            <button onclick="myFunction()">Try it</button>
+             -->
+   <!--    <p> 
+         <button id="resetButton" type="button1" onclick="mymap.flyTo([51, -92], 4.45) "> RESET </button>
+      </p> --> 
+   </body>
 </html>
