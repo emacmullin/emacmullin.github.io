@@ -81,13 +81,13 @@
 
            function reqListener () {
                      var apiResponseAB = JSON.parse(this.responseText);
-                     var apiResponseABtxt = 
+                     // var apiResponseABtxt = 
                      L.geoJSON(apiResponseAB,  {onEachFeature: onEachFeature}).addTo(mymap);
                  }
    
            var oReq = new XMLHttpRequest();
            oReq.addEventListener("load", reqListener);
-           oReq.open("GET", "https://raw.githubusercontent.com/emacmullin/emacmullin.github.io/master/GC-NP/CLAB_AB_2020-08-31.geojson");
+           oReq.open("GET", "https://raw.githubusercontent.com/emacmullin/emacmullin.github.io/master/GC-NP/ALL_NP.geojson");
            oReq.send();
                             
     
