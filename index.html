@@ -48,7 +48,7 @@
          function onEachFeature(feature, layer) {
                // image = feature.properties.img ? "<img src="+feature.properties.img + " width=\"200\" height=\"150\">" : "";
          
-                 layer.bindPopup("<p id='popup'>"+feature.properties.NAME_E+"</p>");
+                 layer.bindPopup("<p id='popup'>"+feature.properties."Official Name (in English) of the National Park+"</p>");
                          // layer.bindPopup("<h1>"+feature.properties.name+"</h1><p>"+feature.properties.caption+"</p><img src="+feature.properties.img + " width=\"200\" height=\"150\">");
                  // layer.setStyle({fillColor: feature.properties.color, color:feature.properties.color});
          
@@ -87,7 +87,7 @@
    
            var oReq = new XMLHttpRequest();
            oReq.addEventListener("load", reqListener);
-           oReq.open("GET", "https://raw.githubusercontent.com/emacmullin/emacmullin.github.io/master/GC-NP/ALL_NP.geojson");
+           oReq.open("GET", "https://raw.githubusercontent.com/emacmullin/emacmullin.github.io/master/GC-NP/national_parks_boundaries_Fe.geojson");
            oReq.send();
                             
     
