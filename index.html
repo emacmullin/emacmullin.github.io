@@ -11,30 +11,86 @@
          crossorigin=""></script>
       <script src='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js'></script>
       <link href='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.css' rel='stylesheet' />
-      <style>
-      <style>
-         body {
-         font-family: 'Roboto Condensed';font-size: 22px;
-         }
-         body {text-align: center;}
-         h1 {text-align: center;}
-         p {text-align: center;}
-         h1 {text-align: center;}
-         #popup {color:red; font-size: 12px; font-family:verdana}
+      
+<!-- ------------------------------------------------------------------------------------------------------ -->
+<!-- CSS STYLES FOR LABELS AND TEXT CONTENT 
+ ------------------------------------------------------------------------------------------------------ --> 
 
-      </style>
+      <style>
+         body {font-family: 'Roboto Condensed';font-size: 22px; color: white;}
+         body {background-color: #17191c;}
+         h1 {text-align: left;}
+         p {text-align: left;}
+
+         #popup {text-align: center; color:white; font-size: 20px; font-family:'Roboto Condensed'}
+         #popup2 {text-align: center; color:white; font-size: 18px; font-family:'Roboto Condensed'}
+         #popup3 {text-align: center; color:white; font-size: 12px; font-family:'Roboto Condensed', letter-spacing: 10px}
+      
+
+        .custom .leaflet-popup-tip,
+        .custom .leaflet-popup-content-wrapper {
+            background:rgba(0,0,0,0.5);
+            color: #ffffcf;
+            border-bottom: 6px solid white;
+        }
+
+        .custom1 .leaflet-popup-tip,
+        .custom1 .leaflet-popup-content-wrapper {
+            background:rgba(0,0,0,0.5);
+            color: #ffffcf;
+            border: 6px dashed white;
+}
+        .button{
+            text-align: center;
+            font-family: 'Roboto Condensed';
+            font-size: 15px;
+            color: white;
+            background-color: #1f2428;
+            border: none;
+            opacity: 1;
+            position: relative;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+            font-weight: 100;
+            display: inline-block;
+            margin: 2px;
+            text-decoration: none;
+
+
+        }
+        .button:hover {
+            text-align: center;
+            font-size: 15px;
+            background-color: whitesmoke;
+            color: black;
+            border: none;
+            opacity: 1;
+            padding: 15px 25px;
+            border-radius: 15px;
+            box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+        
+ </style>
+   
    </head>
    
 
-
-
-
    <body>
-      <h1> Unsettled: Moving Around Canada </h1>
-      <p> This map presents the sequence of the places I have live in last 8 years. </p>
-      <p> Click the locations below and envison the number of kilometres! </p>
-      <div id="mapid" style="height: 400px; margin: auto;"></div>
-  
+      
+<!-- ------------------------------------------------------------------------------------------------------ -->
+<!-- THE TITLE AND TEXT 
+ ------------------------------------------------------------------------------------------------------ --> 
+
+      <div class="center" >
+           <a id="brad" class="button button1" style="float: right;" href="https://www.pc.gc.ca/en/pn-np" target="_blank">Canada National Parks Website</a>
+      </div>
+      
+
+      <h1> An Overlander's Guide to Canada's National Parks </h1>
+      <p> Explore the (free) Wild and Infomal campsites & plan your next adventure. </p>
+
+      <div id="mapid" style="height: 600px; margin: auto; display: block;"></div>
+
 
   <!--     <p>Click the button to get your coordinates.</p>
       // <button onclick="getLocation()">Try It</button>
@@ -42,27 +98,68 @@
       <p id="demo"></p> -->
       
 <!-- ------------------------------------------------------------------------------------------------------ -->
- <!-- top of doing things 
-<! ------------------------------------------------------------------------------------------------------ -->
+<!-- LABELING FEATURES -->
+<!-- ------------------------------------------------------------------------------------------------------ --> 
       <script type="text/javascript">
          function onEachFeature(feature, layer) {
-               // image = feature.properties.img ? "<img src="+feature.properties.img + " width=\"200\" height=\"150\">" : "";
-         
-                 layer.bindPopup("<p id='popup'>"+feature.properties.park_name_official_e+"</p>");
+                       var customOptions =
+                       {
+                        'maxWidth': '250',
+                        'className' : 'custom' }
+                       
+                       var customOptions1 =
+                       {
+                        'maxWidth': '250',
+                        'className' : 'custom1' }
+
+
+
+
+
+                    if (feature.properties.park_name_official_e) {
+                      layer.bindPopup("<p id='popup'>"+feature.properties.park_name_official_e+"</p>", customOptions1);
+                   
+
+                    } 
+                    else if (feature.properties.Category)  {
+                     layer.bindPopup("<p id='popup2'>"+feature.properties.Category+"</p><p id='popup3'>"+feature.properties.Description+"</p>", customOptions); 
+
+
+                  }
+
                          // layer.bindPopup("<h1>"+feature.properties.name+"</h1><p>"+feature.properties.caption+"</p><img src="+feature.properties.img + " width=\"200\" height=\"150\">");
-                 // layer.setStyle({fillColor: feature.properties.color, color:feature.properties.color});
-         
+
+        
+      
          }
+
+
+
+
          
-         function style(feature) {
-             return {
-                 fillColor: getColor(feature.properties.color),
-         
-             };
+// <!-- ------------------------------------------------------------------------------------------------------ -->
+// <!-- CHANGING FEATURE ICONS
+// <!-- ------------------------------------------------------------------------------------------------------ --> 
+         function pointToLayer (feature, latlng) {
+                              return L.circleMarker(latlng, geojsonMarkerOptions);
          }
-         
-         
-           var mymap = L.map('mapid').setView([51, -92], 4.4);
+          var geojsonMarkerOptions = {
+          radius: 10,
+          fillColor: "#ffffff",
+          color: "#000",
+          weight: 1,
+          opacity: 0,
+          fillOpacity: 0
+        };
+
+
+               //  layer.setStyle({fillColor: feature.properties.color, color:feature.properties.color});
+
+// <!-- ------------------------------------------------------------------------------------------------------ -->
+// <!-- THE MAP
+// <!-- ------------------------------------------------------------------------------------------------------ --> 
+
+           var mymap = L.map('mapid').setView([68.83, -95.07], 2.5); 
           L.tileLayer(
          'https://api.mapbox.com/styles/v1/macmulline/ckh2hg1if1owm19ods8612vz4/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoibWFjbXVsbGluZSIsImEiOiJjazg1NGlodTAwMHF2M2VtbjlrenJpcXpnIn0.CUg3zp6Gqb5F9kW1TCKe7A',
            
@@ -76,26 +173,59 @@
           }).addTo(mymap);
          
   
+// <!-- ------------------------------------------------------------------------------------------------------ -->
+// <!-- API LISTENER / RESPONSE FOR POLYGONS & ADD TO MAP WITH "ON EACH FEATURE FUNCTION"
+// <!-- ------------------------------------------------------------------------------------------------------ --> 
+           function reqListenerpolygons () {
+            var myStyle = {
+                        "color": "#5399df",
+                        "weight": "1"
+                        // "fillColor": "#7da19d"
+                    };
+                     var apiResponsepolygons = JSON.parse(this.responseText);
+                     L.geoJSON(apiResponsepolygons,  {onEachFeature: onEachFeature, style: myStyle}).addTo(mymap)
+                     //
 
+                    }
+          
+// <!-- ------------------------------------------------------------------------------------------------------ -->
+// <!-- API LISTENER FOR POINTS & FILTER BY PROPERTIES 
+// <!-- ------------------------------------------------------------------------------------------------------ --> 
+           function reqListenerpoints () {
+                    
+                     var apiResponseoverlander = JSON.parse(this.responseText);
+                     var q1 = apiResponseoverlander['features'].filter(f => f.properties.Open === "Yes" && f.properties.Category === "Informal Campsite" || f.properties.Category === "Wild Camping");
+                              
 
+                     console.log(apiResponseoverlander['features'])
+                     console.log('q1', q1);
+// <!-- ------------------------------------------------------------------------------------------------------ -->
+// <!-- NAME NEW LIST OF FEATURES THE FEATURE COLLECTION 
+// <!-- ------------------------------------------------------------------------------------------------------ --> 
+                     apiResponseoverlander["features"] = q1
+                     console.log(apiResponseoverlander['features'])
 
-           function reqListener () {
-                     var apiResponseAB = JSON.parse(this.responseText);
-                     L.geoJSON(apiResponseAB,  {onEachFeature: onEachFeature}).addTo(mymap);
+                     //L.geoJSON(apiResponseoverlander,  {onEachFeature: onEachFeature}).addTo(mymap)
+// <!-- ------------------------------------------------------------------------------------------------------ -->
+// <!-- ADD TO MAP WITH POINT STYLE FUNCTION FROM ABOUT AND THE ON EACH FEATURE LABELING
+// <!-- ------------------------------------------------------------------------------------------------------ --> 
+
+                      L.geoJSON(apiResponseoverlander, {
+                          pointToLayer:pointToLayer, onEachFeature: onEachFeature }).addTo(mymap);
                  }
-   
-           var oReq = new XMLHttpRequest();
-           oReq.addEventListener("load", reqListener);
-           oReq.open("GET", "https://raw.githubusercontent.com/emacmullin/emacmullin.github.io/master/GC-NP/national_parks_boundaries_Fe.geojson");
-           oReq.send();
+
+// <!-- ------------------------------------------------------------------------------------------------------ -->
+// <!-- THE TWO API CALLS / REPONSE 
+// <!-- ------------------------------------------------------------------------------------------------------ --> 
+           var poly = new XMLHttpRequest();
+           poly.addEventListener("load", reqListenerpolygons);
+           poly.open("GET", "https://raw.githubusercontent.com/emacmullin/emacmullin.github.io/master/GC-NP/national_parks_boundaries_Fe.geojson");
+           poly.send();
                             
-    
-         
-         
-         
-         
-         
-         
+          var overlander = new XMLHttpRequest();
+           overlander.addEventListener("load", reqListenerpoints);
+           overlander.open("GET", "https://raw.githubusercontent.com/emacmullin/emacmullin.github.io/master/GC-NP/iOverlander%20Places.geojson");
+           overlander.send();        
          
 // <!-- ------------------------------------------------------------------------------------------------------ -->
 // <!-- tthe cool thing 
