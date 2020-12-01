@@ -113,14 +113,16 @@
                         'className' : 'custom1' }
 
 
-                    if (feature.properties.Category)  {
-                     layer.bindPopup("<p id='popup2'>"+feature.properties.Category+"</p><p id='popup3'>"+feature.properties.Description+"</p>", customOptions);
 
-                  } 
-                    
 
-                    else if (feature.properties.park_name_official_e) {
+
+                    if (feature.properties.park_name_official_e) {
                       layer.bindPopup("<p id='popup'>"+feature.properties.park_name_official_e+"</p>", customOptions1);
+                   
+
+                    } 
+                    else if (feature.properties.Category)  {
+                     layer.bindPopup("<p id='popup2'>"+feature.properties.Category+"</p><p id='popup3'>"+feature.properties.Description+"</p>", customOptions); 
 
 
                   }
@@ -145,7 +147,7 @@
           radius: 10,
           fillColor: "#ffffff",
           color: "#000",
-          weight: 0,
+          weight: 1,
           opacity: 0,
           fillOpacity: 0
         };
@@ -193,12 +195,15 @@
                     
                      var apiResponseoverlander = JSON.parse(this.responseText);
                      var q1 = apiResponseoverlander['features'].filter(f => f.properties.Open === "Yes" && f.properties.Category === "Informal Campsite" || f.properties.Category === "Wild Camping");
+                              
+
                      console.log(apiResponseoverlander['features'])
                      console.log('q1', q1);
 // <!-- ------------------------------------------------------------------------------------------------------ -->
 // <!-- NAME NEW LIST OF FEATURES THE FEATURE COLLECTION 
 // <!-- ------------------------------------------------------------------------------------------------------ --> 
                      apiResponseoverlander["features"] = q1
+                     console.log(apiResponseoverlander['features'])
 
                      //L.geoJSON(apiResponseoverlander,  {onEachFeature: onEachFeature}).addTo(mymap)
 // <!-- ------------------------------------------------------------------------------------------------------ -->
